@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_USER: wellinton
+      POSTGRES_PASSWORD: 163264
+      POSTGRES_DB: inteligence_erp
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
