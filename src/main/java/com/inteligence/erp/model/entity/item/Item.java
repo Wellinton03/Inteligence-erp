@@ -1,4 +1,4 @@
-package com.inteligence.erp.model.entity.material;
+package com.inteligence.erp.model.entity.item;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,16 +7,17 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "material")
-public class Material {
+@Table(name = "item")
+public class Item {
 
-    public Material() {
+    public Item() {
     }
 
     @Id
     private Long id;
     private String nome;
     private String descricao;
+    private Double valor;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
 
@@ -38,6 +39,14 @@ public class Material {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public void setDescricao(String descricao) {

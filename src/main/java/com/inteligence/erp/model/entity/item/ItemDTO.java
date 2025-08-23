@@ -1,15 +1,17 @@
-package com.inteligence.erp.model.entity.material;
+package com.inteligence.erp.model.entity.item;
 
 import java.time.LocalDateTime;
 
-public class MaterialDTO {
+public class ItemDTO {
 
-    public MaterialDTO() {
+    public ItemDTO() {
     }
 
     private Long id;
     private String nome;
     private String descricao;
+    private Double preco;
+    private Integer quantidade;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
 
@@ -35,6 +37,22 @@ public class MaterialDTO {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
     public LocalDateTime getDtCriacao() {
