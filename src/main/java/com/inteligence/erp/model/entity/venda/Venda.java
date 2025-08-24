@@ -1,8 +1,9 @@
 package com.inteligence.erp.model.entity.venda;
 
 import com.inteligence.erp.model.entity.item.Item;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "venda")
@@ -11,8 +12,15 @@ public class Venda {
     public Venda() {
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="tipo_venda", nullable=false)
     private String tipoVenda;
+
+    @ManyToOne
+    @JoinColumn(name="item_id", nullable=false)
     private Item item;
 
     public Long getId() {
@@ -37,5 +45,17 @@ public class Venda {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Venda venda = (Venda) o;
+        return Objects.equals(id, venda.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

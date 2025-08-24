@@ -1,10 +1,10 @@
 package com.inteligence.erp.model.entity.usuario;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.inteligence.erp.model.entity.empresa.Empresa;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "usuario")
@@ -12,15 +12,37 @@ public class Usuario {
 
     public Usuario() {
     }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="nome", nullable=false)
     private String nome;
+
+    @Column(name="cpf", nullable=false, unique=true)
     private String cpf;
+
+    @ManyToOne
+    @JoinColumn(name="empresa_id", nullable=false)
+    private Empresa empresa;
+
+    @Column(name="funcao", nullable=false)
     private String funcao;
+
+    @Column(name="telefone", nullable=false)
     private String telefone;
+
+    @Column(name="cidade", nullable=false)
     private String cidade;
+
+    @Column(name="email", nullable=false)
     private String email;
+
+    @Column(name="dt_criacao", nullable=false)
     private LocalDateTime dtCriacao;
+
+    @Column(name="dt_atualizacao", nullable=false)
     private LocalDateTime dtAtualizacao;
 
 
@@ -39,6 +61,14 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     public String getCpf() {
@@ -103,5 +133,17 @@ public class Usuario {
 
     public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }

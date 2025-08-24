@@ -1,10 +1,9 @@
 package com.inteligence.erp.model.entity.item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "item")
@@ -14,11 +13,22 @@ public class Item {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name="nome", nullable=false)
     private String nome;
+
+    @Column(name="descricao", nullable=false)
     private String descricao;
+
+    @Column(name="valor", nullable=false)
     private Double valor;
+
+    @Column(name="dt_criacao", nullable=false)
     private LocalDateTime dtCriacao;
+
+    @Column(name="dt_atualizacao", nullable=false)
     private LocalDateTime dtAtualizacao;
 
     public Long getId() {
@@ -67,5 +77,18 @@ public class Item {
 
     public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return Objects.equals(id, item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
