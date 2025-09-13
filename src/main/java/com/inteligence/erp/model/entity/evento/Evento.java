@@ -1,11 +1,10 @@
 package com.inteligence.erp.model.entity.evento;
 
 import com.inteligence.erp.model.entity.usuario.Usuario;
-import com.inteligence.erp.util.enun.StatusEvento;
+import com.inteligence.erp.model.enun.StatusEvento;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name= "evento")

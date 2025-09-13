@@ -1,9 +1,9 @@
-package com.inteligence.erp.util.enun;
+package com.inteligence.erp.model.enun;
 
 public enum StatusEvento {
     A_FAZER(1, "A Fazer"),
     EM_ANDAMENTO(2, "Em Andamento"),
-    CONCLUIDO(3, "Concluído"),
+    CONCLUIDO(3, "Concluï¿½do"),
     CANCELADO(4, "Cancelado");
 
     private final int codigo;
@@ -22,14 +22,14 @@ public enum StatusEvento {
         return descricao;
     }
 
-    // Utilitário para buscar enum pelo código
+    // Utilitï¿½rio para buscar enum pelo cï¿½digo
     public static StatusEvento fromCodigo(int codigo) {
         for (StatusEvento status : StatusEvento.values()) {
             if (status.getCodigo() == codigo) {
                 return status;
             }
         }
-        throw new IllegalArgumentException("Código inválido: " + codigo);
+        throw new IllegalArgumentException("Cï¿½digo invï¿½lido: " + codigo);
     }
 }
 
