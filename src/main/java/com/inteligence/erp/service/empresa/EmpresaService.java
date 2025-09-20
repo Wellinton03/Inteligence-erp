@@ -2,30 +2,38 @@ package com.inteligence.erp.service.empresa;
 
 import com.inteligence.erp.model.entity.empresa.Empresa;
 import com.inteligence.erp.model.repository.EmpresaRepository;
-import com.inteligence.erp.service.evento.util.IService;
+import com.inteligence.erp.service.util.IService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class EmpresaService implements IService<Empresa> {
 
+    @Autowired
     private EmpresaRepository empresaRep;
 
     public EmpresaService() {
     }
 
     @Override
+    @Transactional
     public void criar(Empresa empresa) {
-        empresaRep.save(empresa);
+        this.empresaRep.save(empresa);
     }
 
     @Override
+    @Transactional
     public void atualizar(Empresa empresa) {
-        empresaRep.save(empresa);
+        this.empresaRep.save(empresa);
     }
 
     @Override
+    @Transactional
     public void deletar(Long id) {
-        empresaRep.deleteById(id);
+        this.empresaRep.deleteById(id);
     }
 
     @Override
@@ -34,12 +42,12 @@ public class EmpresaService implements IService<Empresa> {
             throw new IllegalArgumentException("ID inválido: " + id);
         }
 
-        return empresaRep.findById(id).orElseThrow(() -> new RuntimeException("Empresa não encontrada com o ID: " + id));
+        return this.empresaRep.findById(id).orElseThrow(() -> new RuntimeException("Empresa não encontrada com o ID: " + id));
     }
 
     @Override
     public List<Empresa> listartodos() {
-        List<Empresa> empresas = empresaRep.findAll();
+        List<Empresa> empresas = this.empresaRep.findAll();
 
         if (empresas.isEmpty()) {
             throw new RuntimeException("Nenhuma empresa encontrada.");

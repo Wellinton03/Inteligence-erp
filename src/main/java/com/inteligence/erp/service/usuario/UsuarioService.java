@@ -2,30 +2,38 @@ package com.inteligence.erp.service.usuario;
 
 import com.inteligence.erp.model.entity.usuario.Usuario;
 import com.inteligence.erp.model.repository.UsuarioRepository;
-import com.inteligence.erp.service.evento.util.IService;
+import com.inteligence.erp.service.util.IService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
 public class UsuarioService implements IService<Usuario> {
 
+    @Autowired
     private UsuarioRepository usuarioRep;
 
     public UsuarioService() {
     }
 
     @Override
+    @Transactional
     public void criar(Usuario evento) {
-        usuarioRep.save(evento);
+        this.usuarioRep.save(evento);
     }
 
     @Override
+    @Transactional
     public void atualizar(Usuario evento) {
-        usuarioRep.save(evento);
+        this.usuarioRep.save(evento);
     }
 
     @Override
+    @Transactional
     public void deletar(Long id) {
-        usuarioRep.deleteById(id);
+        this.usuarioRep.deleteById(id);
     }
 
     @Override
@@ -34,13 +42,13 @@ public class UsuarioService implements IService<Usuario> {
             throw new IllegalArgumentException("ID inválido: " + id);
         }
 
-        return usuarioRep.findById(id)
+        return this.usuarioRep.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
     }
 
     @Override
     public List<Usuario> listartodos() {
-        List<Usuario> usuarios = usuarioRep.findAll();
+        List<Usuario> usuarios = this.usuarioRep.findAll();
 
         if (usuarios.isEmpty()) {
             throw new RuntimeException("Nenhum usuário encontrado.");

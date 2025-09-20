@@ -1,4 +1,4 @@
-package com.inteligence.erp.service.evento.util;
+package com.inteligence.erp.service.util;
 
 import java.util.List;
 
