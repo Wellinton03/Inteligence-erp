@@ -12,23 +12,36 @@ public class Item {
     public Item() {
     }
 
+    public Item(ItemDTO dto) {
+        this.id = dto.getId();
+        this.nome = dto.getNome();
+        this.descricao = dto.getDescricao();
+        this.valor = dto.getValor();
+        this.quantidade = dto.getQuantidade();
+        this.dtCriacao = dto.getDtCriacao();
+        this.dtAtualizacao = dto.getDtAtualizacao();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="nome", nullable=false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name="descricao", nullable=false)
+    @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @Column(name="valor", nullable=false)
+    @Column(name = "valor", nullable = false)
     private Double valor;
 
-    @Column(name="dt_criacao", nullable=false)
+    @Column(name = "quantidade", nullable = true)
+    private Integer quantidade;
+
+    @Column(name = "dt_criacao", nullable = false)
     private LocalDateTime dtCriacao;
 
-    @Column(name="dt_atualizacao", nullable=false)
+    @Column(name = "dt_atualizacao", nullable = false)
     private LocalDateTime dtAtualizacao;
 
     public Long getId() {
@@ -57,6 +70,14 @@ public class Item {
 
     public void setValor(Double valor) {
         this.valor = valor;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
     }
 
     public void setDescricao(String descricao) {

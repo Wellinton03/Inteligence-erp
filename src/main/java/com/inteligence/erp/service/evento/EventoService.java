@@ -1,16 +1,17 @@
 package com.inteligence.erp.service.evento;
 
 import com.inteligence.erp.model.entity.evento.Evento;
+import com.inteligence.erp.model.entity.evento.EventoDTO;
 import com.inteligence.erp.model.repository.EventoRepository;
-import com.inteligence.erp.service.util.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class EventoService implements IService<Evento> {
+public class EventoService {
 
     @Autowired
     private EventoRepository eventoRep;
@@ -18,42 +19,36 @@ public class EventoService implements IService<Evento> {
     public EventoService() {
     }
 
-    @Override
     @Transactional
-    public void criar(Evento evento) {
+    public void criar(EventoDTO dto) {
+        Evento evento = new Evento(dto);
         this.eventoRep.save(evento);
     }
 
-    @Override
     @Transactional
-    public void atualizar(Evento evento) {
+    public void atualizar(EventoDTO dto) {
+        Evento evento = new Evento(dto);
         this.eventoRep.save(evento);
     }
 
-    @Override
     @Transactional
     public void deletar(Long id) {
         this.eventoRep.deleteById(id);
     }
 
-    @Override
-    public Evento buscarPorId(Long id) {
+    public EventoDTO buscarPorId(Long id) {
         if(id == null) {
             throw new IllegalArgumentException("ID inválido: " + id);
         }
-
-        return this.eventoRep.findById(id)
+        return this.eventoRep.findById(id).map(EventoDTO::new)
                 .orElseThrow(() -> new RuntimeException("Evento não encontrado com o ID: " + id));
     }
 
-    @Override
-    public List<Evento> listartodos() {
-        List<Evento> eventos = this.eventoRep.findAll();
-
+    public List<EventoDTO> listartodos() {
+        List<EventoDTO> eventos = this.eventoRep.findAll().stream().map(EventoDTO::new).toList();
         if(eventos.isEmpty()) {
             throw new RuntimeException("Nenhum evento encontrado.");
         }
-
         return eventos;
     }
 }

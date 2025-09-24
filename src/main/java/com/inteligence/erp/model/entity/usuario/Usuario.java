@@ -13,6 +13,22 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(UsuarioDTO dto) {
+        this.id = dto.getId();
+        this.nome = dto.getNome();
+        this.cpf = dto.getCpf();
+        this.funcao = dto.getFuncao();
+        this.telefone = dto.getTelefone();
+        this.cidade = dto.getCidade();
+        this.email = dto.getEmail();
+        this.dtCriacao = dto.getDtCriacao();
+        this.dtAtualizacao = dto.getDtAtualizacao();
+
+        if (dto.getEmpresa() != null) {
+            this.empresa = new Empresa(dto.getEmpresa());
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

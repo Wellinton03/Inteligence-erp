@@ -7,7 +7,21 @@ public class EmpresaDTO {
     public EmpresaDTO() {
     }
 
+    public EmpresaDTO(Empresa empresa) {
+        this.id = empresa.getId();
+        this.nome = empresa.getNome();
+        this.cnpj = empresa.getCnpj();
+        this.telefone = empresa.getTelefone();
+        this.cidade = empresa.getCidade();
+        this.email = empresa.getEmail();
+        this.senha = empresa.getSenha();
+        this.dtCriacao = empresa.getDtCriacao();
+        this.dtAtualizacao = empresa.getDtAtualizacao();
+    }
+
+    private Long id;
     private String nome;
+    private String tipoEmpresa;
     private String cnpj;
     private String telefone;
     private String cidade;
@@ -16,12 +30,28 @@ public class EmpresaDTO {
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getTipoEmpresa() {
+        return tipoEmpresa;
+    }
+
+    public void setTipoEmpresa(String tipoEmpresa) {
+        this.tipoEmpresa = tipoEmpresa;
     }
 
     public String getCnpj() {

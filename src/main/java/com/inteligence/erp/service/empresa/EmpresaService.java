@@ -1,8 +1,8 @@
 package com.inteligence.erp.service.empresa;
 
 import com.inteligence.erp.model.entity.empresa.Empresa;
+import com.inteligence.erp.model.entity.empresa.EmpresaDTO;
 import com.inteligence.erp.model.repository.EmpresaRepository;
-import com.inteligence.erp.service.util.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class EmpresaService implements IService<Empresa> {
+public class EmpresaService {
 
     @Autowired
     private EmpresaRepository empresaRep;
@@ -18,41 +18,35 @@ public class EmpresaService implements IService<Empresa> {
     public EmpresaService() {
     }
 
-    @Override
     @Transactional
-    public void criar(Empresa empresa) {
+    public void criar(EmpresaDTO dto) {
+        Empresa empresa = new Empresa(dto);
         this.empresaRep.save(empresa);
     }
 
-    @Override
     @Transactional
-    public void atualizar(Empresa empresa) {
+    public void atualizar(EmpresaDTO dto) {
+        Empresa empresa = new Empresa(dto);
         this.empresaRep.save(empresa);
     }
 
-    @Override
     @Transactional
     public void deletar(Long id) {
         this.empresaRep.deleteById(id);
     }
 
-    @Override
-    public Empresa buscarPorId(Long id) {
+    public EmpresaDTO buscarPorId(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("ID inválido: " + id);
         }
-
-        return this.empresaRep.findById(id).orElseThrow(() -> new RuntimeException("Empresa não encontrada com o ID: " + id));
+        return this.empresaRep.findById(id).map(EmpresaDTO::new).orElseThrow(() -> new RuntimeException("Empresa não encontrada com o ID: " + id));
     }
 
-    @Override
-    public List<Empresa> listartodos() {
-        List<Empresa> empresas = this.empresaRep.findAll();
-
+    public List<EmpresaDTO> listartodos() {
+        List<EmpresaDTO> empresas = this.empresaRep.findAll().stream().map(EmpresaDTO::new).toList();
         if (empresas.isEmpty()) {
             throw new RuntimeException("Nenhuma empresa encontrada.");
         }
-
         return empresas;
     }
 }

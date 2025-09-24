@@ -7,10 +7,20 @@ public class ItemDTO {
     public ItemDTO() {
     }
 
+    public ItemDTO(Item item) {
+        this.id = item.getId();
+        this.nome = item.getNome();
+        this.descricao = item.getDescricao();
+        this.valor = item.getValor();
+        this.quantidade = item.getQuantidade();
+        this.dtCriacao = item.getDtCriacao();
+        this.dtAtualizacao = item.getDtAtualizacao();
+    }
+
     private Long id;
     private String nome;
     private String descricao;
-    private Double preco;
+    private Double valor;
     private Integer quantidade;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
@@ -39,12 +49,12 @@ public class ItemDTO {
         this.descricao = descricao;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setValor(Double preco) {
+        this.valor = preco;
     }
 
     public Integer getQuantidade() {
@@ -70,4 +80,5 @@ public class ItemDTO {
     public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
     }
+
 }

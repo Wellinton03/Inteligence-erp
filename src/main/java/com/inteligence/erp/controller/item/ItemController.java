@@ -1,41 +1,68 @@
 package com.inteligence.erp.controller.item;
 
-import com.inteligence.erp.controller.util.IController;
+import com.inteligence.erp.model.entity.item.ItemDTO;
 import com.inteligence.erp.service.item.ItemService;
+import org.hibernate.query.IllegalQueryOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/item")
-public class ItemController implements IController {
+public class ItemController {
 
     @Autowired
     private ItemService itemService;
 
-    @Override
-    public ResponseEntity listarTodos(Object entity) {
-        return null;
+    @GetMapping("/listar")
+    public ResponseEntity listarTodos() {
+        try {
+            List<ItemDTO> itens = this.itemService.listartodos();
+            return ResponseEntity.ok(itens);
+        } catch (IllegalQueryOperationException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @Override
-    public ResponseEntity listarPorId(Long id) {
-        return null;
+    @GetMapping("/buscar/{id}")
+    public ResponseEntity listarPorId(@PathVariable Long id) {
+        try {
+            ItemDTO item = this.itemService.buscarPorId(id);
+            return ResponseEntity.ok(item);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @Override
-    public ResponseEntity criar(Object entity) {
-        return null;
+    @PostMapping("/cadastrar")
+    public ResponseEntity criar(@RequestBody ItemDTO item) {
+        try {
+            this.itemService.criar(item);
+            return ResponseEntity.status(201).build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @Override
-    public ResponseEntity atualizar(Object entity) {
-        return null;
+    @PutMapping("/editar")
+    public ResponseEntity atualizar(@RequestBody ItemDTO item) {
+        try {
+            this.itemService.atualizar(item);
+            return ResponseEntity.status(200).build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @Override
-    public ResponseEntity deletar(Long id) {
-        return null;
+    @DeleteMapping("/excluir/{id}")
+    public ResponseEntity deletar(@PathVariable Long id) {
+        try {
+            this.itemService.deletar(id);
+            return ResponseEntity.status(200).build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

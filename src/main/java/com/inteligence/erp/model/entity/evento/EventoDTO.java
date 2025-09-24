@@ -10,6 +10,18 @@ public class EventoDTO {
     public EventoDTO() {
     }
 
+    public EventoDTO(Evento evento) {
+        this.id = evento.getId();
+        this.statusEvento = evento.getStatusEvento();
+        this.tipoProblema = evento.getTipoProblema();
+        this.descricao = evento.getDescricao();
+        this.relator = evento.getRelator();
+        this.responsavel = evento.getResponsavel();
+        this.setorResponsavel = evento.getSetorResponsavel();
+        this.dtAlteracao = evento.getDtAlteracao();
+        this.dtInclusao = evento.getDtInclusao();
+    }
+
     private Long id;
     private StatusEvento statusEvento;
     private String tipoProblema;

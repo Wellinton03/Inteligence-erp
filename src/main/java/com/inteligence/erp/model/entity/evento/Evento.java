@@ -13,6 +13,18 @@ public class Evento {
     public Evento() {
     }
 
+    public Evento(EventoDTO dto) {
+        this.id = dto.getId();
+        this.statusEvento = dto.getStatusEvento();
+        this.tipoProblema = dto.getTipoProblema();
+        this.descricao = dto.getDescricao();
+        this.relator = dto.getRelator();
+        this.responsavel = dto.getResponsavel();
+        this.setorResponsavel = dto.getSetorResponsavel();
+        this.dtAlteracao = dto.getDtAlteracao();
+        this.dtInclusao = dto.getDtInclusao();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

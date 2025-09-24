@@ -1,16 +1,17 @@
 package com.inteligence.erp.service.item;
 
 import com.inteligence.erp.model.entity.item.Item;
+import com.inteligence.erp.model.entity.item.ItemDTO;
 import com.inteligence.erp.model.repository.ItemRepository;
-import com.inteligence.erp.service.util.IService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class ItemService implements IService<Item> {
+public class ItemService{
 
     @Autowired
     private ItemRepository itemRep;
@@ -18,42 +19,36 @@ public class ItemService implements IService<Item> {
     public ItemService() {
     }
 
-    @Override
     @Transactional
-    public void criar(Item item) {
+    public void criar(ItemDTO dto) {
+        Item item = new Item(dto);
         this.itemRep.save(item);
     }
 
-    @Override
     @Transactional
-    public void atualizar(Item item) {
+    public void atualizar(ItemDTO dto) {
+        Item item = new Item(dto);
         this.itemRep.save(item);
     }
 
-    @Override
     @Transactional
     public void deletar(Long id) {
         this.itemRep.deleteById(id);
     }
 
-    @Override
-    public Item buscarPorId(Long id) {
+    public ItemDTO buscarPorId(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("ID inválido: " + id);
         }
-
-        return this.itemRep.findById(id)
+        return this.itemRep.findById(id).map(ItemDTO::new)
                 .orElseThrow(() -> new RuntimeException("Item não encontrado com o ID: " + id));
     }
 
-    @Override
-    public List<Item> listartodos() {
-        List<Item> items = this.itemRep.findAll();
-
+    public List<ItemDTO> listartodos() {
+        List<ItemDTO> items = this.itemRep.findAll().stream().map(ItemDTO::new).toList();
         if (items.isEmpty()) {
             throw new RuntimeException("Nenhum item encontrado.");
         }
-
         return items;
     }
 }

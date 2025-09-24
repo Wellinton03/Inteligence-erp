@@ -1,5 +1,7 @@
 package com.inteligence.erp.model.entity.usuario;
 
+import com.inteligence.erp.model.entity.empresa.EmpresaDTO;
+
 import java.time.LocalDateTime;
 
 public class UsuarioDTO{
@@ -7,9 +9,23 @@ public class UsuarioDTO{
     public UsuarioDTO() {
     }
 
+    public UsuarioDTO(Usuario usuario) {
+        this.id = usuario.getId();
+        this.nome = usuario.getNome();
+        this.cpf = usuario.getCpf();
+        this.empresa = new EmpresaDTO(usuario.getEmpresa());
+        this.funcao = usuario.getFuncao();
+        this.telefone = usuario.getTelefone();
+        this.cidade = usuario.getCidade();
+        this.email = usuario.getEmail();
+        this.dtCriacao = usuario.getDtCriacao();
+        this.dtAtualizacao = usuario.getDtAtualizacao();
+    }
+
     private Long id;
     private String nome;
     private String cpf;
+    private EmpresaDTO empresa;
     private String funcao;
     private String telefone;
     private String cidade;
@@ -40,6 +56,14 @@ public class UsuarioDTO{
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public EmpresaDTO getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(EmpresaDTO empresa) {
+        this.empresa = empresa;
     }
 
     public String getFuncao() {

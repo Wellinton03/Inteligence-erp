@@ -12,6 +12,19 @@ public class Empresa {
     public Empresa() {
     }
 
+    public Empresa(EmpresaDTO dto) {
+        this.id = dto.getId();
+        this.nome = dto.getNome();
+        this.tipoEmpresa = dto.getTipoEmpresa();
+        this.cnpj = dto.getCnpj();
+        this.telefone = dto.getTelefone();
+        this.cidade = dto.getCidade();
+        this.email = dto.getEmail();
+        this.senha = dto.getSenha();
+        this.dtCriacao = dto.getDtCriacao();
+        this.dtAtualizacao = dto.getDtAtualizacao();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
