@@ -17,6 +17,7 @@ public class Usuario {
         this.id = dto.getId();
         this.nome = dto.getNome();
         this.cpf = dto.getCpf();
+        this.senha = dto.getSenha();
         this.funcao = dto.getFuncao();
         this.telefone = dto.getTelefone();
         this.cidade = dto.getCidade();
@@ -52,6 +53,9 @@ public class Usuario {
     @Column(name="cidade", nullable=false)
     private String cidade;
 
+    @Column(name="senha", nullable = false)
+    private String senha;
+
     @Column(name="email", nullable=false)
     private String email;
 
@@ -65,7 +69,6 @@ public class Usuario {
     public Long getId() {
         return id;
     }
-    private String senha;
 
     public void setId(Long id) {
         this.id = id;

@@ -20,7 +20,6 @@ public class Empresa {
         this.telefone = dto.getTelefone();
         this.cidade = dto.getCidade();
         this.email = dto.getEmail();
-        this.senha = dto.getSenha();
         this.dtCriacao = dto.getDtCriacao();
         this.dtAtualizacao = dto.getDtAtualizacao();
     }
@@ -46,9 +45,6 @@ public class Empresa {
 
     @Column(name="email", nullable=false)
     private String email;
-
-    @Column(name="senha", nullable=false)
-    private String senha;
 
     @Column(name="dt_criacao", nullable=false)
     private LocalDateTime dtCriacao;
@@ -110,14 +106,6 @@ public class Empresa {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public LocalDateTime getDtCriacao() {

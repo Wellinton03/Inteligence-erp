@@ -4,7 +4,7 @@ import com.inteligence.erp.model.entity.empresa.EmpresaDTO;
 
 import java.time.LocalDateTime;
 
-public class UsuarioDTO{
+public class UsuarioDTO {
 
     public UsuarioDTO() {
     }
@@ -16,6 +16,7 @@ public class UsuarioDTO{
         this.empresa = new EmpresaDTO(usuario.getEmpresa());
         this.funcao = usuario.getFuncao();
         this.telefone = usuario.getTelefone();
+        this.senha = usuario.getSenha();
         this.cidade = usuario.getCidade();
         this.email = usuario.getEmail();
         this.dtCriacao = usuario.getDtCriacao();
@@ -25,6 +26,7 @@ public class UsuarioDTO{
     private Long id;
     private String nome;
     private String cpf;
+    private String senha;
     private EmpresaDTO empresa;
     private String funcao;
     private String telefone;
@@ -88,6 +90,14 @@ public class UsuarioDTO{
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getEmail() {

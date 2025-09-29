@@ -38,10 +38,12 @@ public class Evento {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "relator")
+    @ManyToOne
+    @JoinColumn(name = "relator")
     private Usuario relator;
 
-    @Column(name = "responsavel")
+    @ManyToOne
+    @JoinColumn(name = "responsavel")
     private Usuario responsavel;
 
     @Column(name = "setor_responsavel")

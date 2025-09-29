@@ -14,7 +14,6 @@ public class EmpresaDTO {
         this.telefone = empresa.getTelefone();
         this.cidade = empresa.getCidade();
         this.email = empresa.getEmail();
-        this.senha = empresa.getSenha();
         this.dtCriacao = empresa.getDtCriacao();
         this.dtAtualizacao = empresa.getDtAtualizacao();
     }
@@ -26,7 +25,6 @@ public class EmpresaDTO {
     private String telefone;
     private String cidade;
     private String email;
-    private String senha;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
 
@@ -76,14 +74,6 @@ public class EmpresaDTO {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getEmail() {
