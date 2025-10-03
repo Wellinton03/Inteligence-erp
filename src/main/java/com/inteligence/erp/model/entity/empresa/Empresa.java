@@ -22,6 +22,7 @@ public class Empresa {
         this.email = dto.getEmail();
         this.dtCriacao = dto.getDtCriacao();
         this.dtAtualizacao = dto.getDtAtualizacao();
+        this.status = dto.getStatus();
     }
 
     @Id
@@ -51,6 +52,9 @@ public class Empresa {
 
     @Column(name="dt_atualizacao", nullable=false)
     private LocalDateTime dtAtualizacao;
+
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
     public String getNome() {
         return nome;
@@ -122,6 +126,14 @@ public class Empresa {
 
     public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override

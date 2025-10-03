@@ -16,6 +16,7 @@ public class EmpresaDTO {
         this.email = empresa.getEmail();
         this.dtCriacao = empresa.getDtCriacao();
         this.dtAtualizacao = empresa.getDtAtualizacao();
+        this.status = empresa.getStatus();
     }
 
     private Long id;
@@ -27,6 +28,7 @@ public class EmpresaDTO {
     private String email;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -98,5 +100,13 @@ public class EmpresaDTO {
 
     public void setDtCriacao(LocalDateTime dtCriacao) {
         this.dtCriacao = dtCriacao;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

@@ -24,6 +24,7 @@ public class Usuario {
         this.email = dto.getEmail();
         this.dtCriacao = dto.getDtCriacao();
         this.dtAtualizacao = dto.getDtAtualizacao();
+        this.status = dto.getStatus();
 
         if (dto.getEmpresa() != null) {
             this.empresa = new Empresa(dto.getEmpresa());
@@ -34,36 +35,39 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="nome", nullable=false)
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name="cpf", nullable=false, unique=true)
+    @Column(name = "cpf", nullable = false, unique = true)
     private String cpf;
 
     @ManyToOne
-    @JoinColumn(name="empresa_id", nullable=false)
+    @JoinColumn(name = "empresa_id", nullable = false)
     private Empresa empresa;
 
-    @Column(name="funcao", nullable=false)
+    @Column(name = "funcao", nullable = false)
     private String funcao;
 
-    @Column(name="telefone", nullable=false)
+    @Column(name = "telefone", nullable = false)
     private String telefone;
 
-    @Column(name="cidade", nullable=false)
+    @Column(name = "cidade", nullable = false)
     private String cidade;
 
-    @Column(name="senha", nullable = false)
+    @Column(name = "senha", nullable = false)
     private String senha;
 
-    @Column(name="email", nullable=false)
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name="dt_criacao", nullable=false)
+    @Column(name = "dt_criacao", nullable = false)
     private LocalDateTime dtCriacao;
 
-    @Column(name="dt_atualizacao", nullable=false)
+    @Column(name = "dt_atualizacao", nullable = false)
     private LocalDateTime dtAtualizacao;
+
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
 
     public Long getId() {
@@ -152,6 +156,14 @@ public class Usuario {
 
     public void setDtAtualizacao(LocalDateTime dtAtualizacao) {
         this.dtAtualizacao = dtAtualizacao;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.inteligence.erp.model.entity.evento;
 
+import com.inteligence.erp.model.entity.item.Item;
+import com.inteligence.erp.model.entity.item.ItemDTO;
 import com.inteligence.erp.model.entity.usuario.Usuario;
 import com.inteligence.erp.model.enun.StatusEvento;
 
@@ -13,24 +15,26 @@ public class EventoDTO {
     public EventoDTO(Evento evento) {
         this.id = evento.getId();
         this.statusEvento = evento.getStatusEvento();
-        this.tipoProblema = evento.getTipoProblema();
+        this.tipoEvento = evento.getTipoEvento();
         this.descricao = evento.getDescricao();
         this.relator = evento.getRelator();
         this.responsavel = evento.getResponsavel();
         this.setorResponsavel = evento.getSetorResponsavel();
         this.dtAlteracao = evento.getDtAlteracao();
         this.dtInclusao = evento.getDtInclusao();
+        this.item = evento.getItem();
     }
 
     private Long id;
     private StatusEvento statusEvento;
-    private String tipoProblema;
+    private String tipoEvento;
     private String descricao;
     private Usuario relator;
     private Usuario responsavel;
     private String setorResponsavel;
     private LocalDateTime dtAlteracao;
     private LocalDateTime dtInclusao;
+    private Item item;
 
     public Long getId() {
         return id;
@@ -48,12 +52,12 @@ public class EventoDTO {
         this.statusEvento = statusEvento;
     }
 
-    public String getTipoProblema() {
-        return tipoProblema;
+    public String getTipoEvento() {
+        return tipoEvento;
     }
 
-    public void setTipoProblema(String tipoProblema) {
-        this.tipoProblema = tipoProblema;
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 
     public String getDescricao() {
@@ -102,5 +106,13 @@ public class EventoDTO {
 
     public void setDtInclusao(LocalDateTime dtInclusao) {
         this.dtInclusao = dtInclusao;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

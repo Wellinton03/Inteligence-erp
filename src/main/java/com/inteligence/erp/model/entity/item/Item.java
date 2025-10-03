@@ -9,7 +9,7 @@ import java.util.Objects;
 @Table(name = "item")
 public class Item {
 
-    public Item() {
+    public Item(Item item) {
     }
 
     public Item(ItemDTO dto) {
@@ -20,6 +20,7 @@ public class Item {
         this.quantidade = dto.getQuantidade();
         this.dtCriacao = dto.getDtCriacao();
         this.dtAtualizacao = dto.getDtAtualizacao();
+        this.status = dto.getStatus();
     }
 
     @Id
@@ -43,6 +44,9 @@ public class Item {
 
     @Column(name = "dt_atualizacao", nullable = false)
     private LocalDateTime dtAtualizacao;
+
+    @Column(name = "status", nullable = false)
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -100,6 +104,13 @@ public class Item {
         this.dtAtualizacao = dtAtualizacao;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {

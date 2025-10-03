@@ -15,6 +15,7 @@ public class ItemDTO {
         this.quantidade = item.getQuantidade();
         this.dtCriacao = item.getDtCriacao();
         this.dtAtualizacao = item.getDtAtualizacao();
+        this.status = item.getStatus();
     }
 
     private Long id;
@@ -24,6 +25,7 @@ public class ItemDTO {
     private Integer quantidade;
     private LocalDateTime dtCriacao;
     private LocalDateTime dtAtualizacao;
+    private Boolean status;
 
     public Long getId() {
         return id;
@@ -81,4 +83,11 @@ public class ItemDTO {
         this.dtAtualizacao = dtAtualizacao;
     }
 
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 }
