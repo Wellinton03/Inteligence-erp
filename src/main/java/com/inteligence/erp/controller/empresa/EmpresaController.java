@@ -18,7 +18,7 @@ public class EmpresaController {
     private EmpresaService empresaService;
 
     @GetMapping("/listar")
-    public ResponseEntity listarTodos(@RequestBody List<EmpresaDTO> empresa) {
+    public ResponseEntity listarTodos() {
         try {
             List<EmpresaDTO> empresas = this.empresaService.listartodos();
             return ResponseEntity.ok(empresas);

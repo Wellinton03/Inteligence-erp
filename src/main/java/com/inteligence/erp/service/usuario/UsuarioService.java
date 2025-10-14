@@ -1,8 +1,10 @@
 package com.inteligence.erp.service.usuario;
 
+import com.inteligence.erp.model.entity.empresa.EmpresaDTO;
 import com.inteligence.erp.model.entity.usuario.Usuario;
 import com.inteligence.erp.model.entity.usuario.UsuarioDTO;
 import com.inteligence.erp.model.repository.UsuarioRepository;
+import com.inteligence.erp.service.empresa.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,11 +17,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRep;
 
+    @Autowired
+    private EmpresaService empresaService;
+
     public UsuarioService() {
     }
 
     @Transactional
     public void criar(UsuarioDTO dto) {
+        EmpresaDTO empresa = new EmpresaDTO();
+        if(dto.getEmpresa() != null) {
+            empresa = this.empresaService.buscarPorId(dto.getEmpresa().getId());
+        }
+        dto.setEmpresa(empresa);
         Usuario usuario = new Usuario(dto);
         this.usuarioRep.save(usuario);
     }
